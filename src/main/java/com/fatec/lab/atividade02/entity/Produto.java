@@ -2,7 +2,6 @@ package com.fatec.lab.atividade02.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -78,5 +77,6 @@ public class Produto {
 	}
 
 	private Date validade;
+	
 
 }

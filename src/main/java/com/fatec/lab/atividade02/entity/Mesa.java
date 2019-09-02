@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.xml.crypto.Data;
 
 @Entity
 public class Mesa {
@@ -26,8 +25,6 @@ public class Mesa {
 	@Column
 	private int quantidade_lugares;
 	
-	@Column
-	private int quantidade_pessoas;
 
 	public int getId() {
 		return id;
@@ -53,13 +50,6 @@ public class Mesa {
 		this.hora_fechada = hora_fechada;
 	}
 
-	public int getQuantidade_pessoas() {
-		return quantidade_pessoas;
-	}
-
-	public void setQuantidade_pessoas(int quantidade_pessoas) {
-		this.quantidade_pessoas = quantidade_pessoas;
-	}
 
 	public int getQuantidade_lugares() {
 		return quantidade_lugares;

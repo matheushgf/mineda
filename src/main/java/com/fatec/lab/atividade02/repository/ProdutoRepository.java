@@ -13,4 +13,5 @@ public interface ProdutoRepository extends CrudRepository<Produto, Long>{
 	@Query("FROM Produto p WHERE p.nome = :nome")
 	Produto findByNome(final String nome);
 
+	
 }

@@ -2,7 +2,6 @@ package com.fatec.lab.atividade02.entity;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
