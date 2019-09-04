@@ -11,21 +11,16 @@ import javax.persistence.Id;
 @Entity
 public class Mesa {
 	
-	@Column
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column
 	private Date hora_aberta;
 	
-	@Column
 	private Date hora_fechada;
 	
-	@Column
 	private int quantidade_lugares;
 	
-
 	public int getId() {
 		return id;
 	}
