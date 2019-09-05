@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fatec.lab.atividade02.entity.Pedido;
+import com.fatec.lab.atividade02.entity.Produto;
 import com.fatec.lab.atividade02.repository.PedidoRepository;
 
 @Service
@@ -32,8 +33,26 @@ public class PedidoServiceImpl implements PedidoService{
 		return pedidoRepository.findById(pedidoId);
 	}
 	
-	List<Pedido> getAllPedidos() {
+	public List<Pedido> getAllPedidos() {
 		return   (List<Pedido>) pedidoRepository.findAll();
+	}
+
+	@Override
+	public void deletePedido(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Pedido buscaPedido(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Produto> getProdutosPedido(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

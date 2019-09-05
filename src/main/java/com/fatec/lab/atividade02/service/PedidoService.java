@@ -8,7 +8,7 @@ import com.fatec.lab.atividade02.entity.Produto;
 
 public interface PedidoService {
 	public void deletePedido(int id);
-	public List<Mesa> getAllPedidos();
+	public List<Pedido> getAllPedidos();
 	public Pedido buscaPedido(int id);
 	public List<Produto> getProdutosPedido(int id);
 }
