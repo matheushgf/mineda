@@ -9,9 +9,9 @@ public interface PedidoRepository extends CrudRepository<Pedido, Long>{
 	
 	Pedido findByNumPedido(final int numPedido);
 	
-	/*
-	@Query("FROM Pedido p WHERE p.id = :id")
-	Pedido findById(final int id);
-	*/
+	
+	@Query("FROM Pedido p WHERE p.fechado = :status")
+	Pedido buscaByStatusFechado (final boolean status);
+	
 
 }
