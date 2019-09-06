@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Mesa {
@@ -15,9 +16,7 @@ public class Mesa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private Date hora_aberta;
-	
-	private Date hora_fechada;
+	private boolean isOpen;
 	
 	private int quantidade_lugares;
 	
@@ -29,23 +28,6 @@ public class Mesa {
 		this.id = id;
 	}
 
-	public Date getHora_aberta() {
-		return hora_aberta;
-	}
-
-	public void setHora_aberta(Date hora_aberta) {
-		this.hora_aberta = hora_aberta;
-	}
-
-	public Date getHora_fechada() {
-		return hora_fechada;
-	}
-
-	public void setHora_fechada(Date hora_fechada) {
-		this.hora_fechada = hora_fechada;
-	}
-
-
 	public int getQuantidade_lugares() {
 		return quantidade_lugares;
 	}
@@ -53,6 +35,15 @@ public class Mesa {
 	public void setQuantidade_lugares(int quantidade_lugares) {
 		this.quantidade_lugares = quantidade_lugares;
 	}
+
+	public boolean isOpen() {
+		return isOpen;
+	}
+
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
+	}
+	
 	
 	//@ManyToOne	
 	//private Pedido pedido;

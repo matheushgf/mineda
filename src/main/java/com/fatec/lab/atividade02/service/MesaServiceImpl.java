@@ -23,15 +23,11 @@ public class MesaServiceImpl implements MesaService {
 		this.mesaRepository = mesaRepository;
 	}
 	
-	public void novaMesa(Date hora_aberta, int quantidade_lugares) {
+	public void novaMesa(int quantidade_lugares) {
 		Mesa mesa = new Mesa();
-		mesa.setHora_aberta(hora_aberta);
+		mesa.setOpen(true);
 		mesa.setQuantidade_lugares(quantidade_lugares);
 		this.mesaRepository.save(mesa);
-	}
-	
-	public List<Mesa> getAllMesas() {
-		return   (List<Mesa>) mesaRepository.findAll();
 	}
 	
 	public Optional<Mesa> getProduto(Long mesaId) {
@@ -44,5 +40,10 @@ public class MesaServiceImpl implements MesaService {
 	public Mesa buscaMesa(int id) {
 		return this.mesaRepository.findById(id);
 	}
-	
+
+	@Override
+	public List<Mesa> getMesasAbertas() {
+		return this.mesaRepository.findMesa_aberta();
+	}
+
 }

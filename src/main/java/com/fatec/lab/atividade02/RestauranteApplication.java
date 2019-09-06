@@ -23,7 +23,6 @@ public class RestauranteApplication implements CommandLineRunner{
 	}
 	
 	public void run(String... args) throws Exception {
-		mesaService.novaMesa(new Date(), 4);
-		mesaService.getAllMesas();
+		mesaService.novaMesa(4);
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fatec.lab.atividade02.entity.Mesa;
 import com.fatec.lab.atividade02.entity.Pedido;
 import com.fatec.lab.atividade02.entity.Produto;
 import com.fatec.lab.atividade02.repository.PedidoRepository;
@@ -38,21 +39,38 @@ public class PedidoServiceImpl implements PedidoService{
 	}
 
 	@Override
-	public void deletePedido(int id) {
-		// TODO Auto-generated method stub
-		
+	public void deletePedido(Long numPedido) {
+		this.pedidoRepository.deleteById(numPedido);	
 	}
 
 	@Override
-	public Pedido buscaPedido(int id) {
+	public Pedido buscaPedido(int numPedido) {
+		return this.pedidoRepository.findByNumPedido(numPedido);		
+	}
+
+	@Override
+	public List<Produto> getProdutosPedido(int numPedido) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Produto> getProdutosPedido(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void novoPedido(int quantidade, float valor, boolean fechado, Mesa mesa) {
+		Pedido pedido= new Pedido();
+		pedido.setQuantidade(quantidade);
+		pedido.setValor(valor);
+		pedido.setFechado(fechado);
+		pedido.setMesa(mesa);
+		pedido.reservaMesa();
+		this.pedidoRepository.save(pedido);
+						
+	}
+
+	@Override
+	public void fechaPedido(int numPedido) {
+		Pedido pedido = this.pedidoRepository.findByNumPedido(numPedido);
+		pedido.fechaPedido();
+		this.pedidoRepository.save(pedido);
 	}
 	
 }

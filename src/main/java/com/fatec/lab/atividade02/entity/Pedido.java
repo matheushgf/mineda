@@ -16,8 +16,6 @@ public class Pedido {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
 	private int numPedido;
 	
 	private int quantidade;
@@ -30,16 +28,24 @@ public class Pedido {
 	@ManyToOne
 	private Mesa mesa;
 
+	public boolean isFechado() {
+		return fechado;
+	}
+
+	public void setFechado(boolean fechado) {
+		this.fechado = fechado;
+	}
+
+	public Mesa getMesa() {
+		return mesa;
+	}
+
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
+
 	@OneToMany(mappedBy = "pedido")
 	private Set<Produto> pipoca;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public int getQuantidade() {
 		return quantidade;
@@ -64,5 +70,15 @@ public class Pedido {
 	public void setNumPedido(int numPedido) {
 		this.numPedido = numPedido;
 	} 
+	
+	public void reservaMesa() {
+		this.mesa.setOpen(false);
+	}
+	
+	public void fechaPedido() {
+		this.setFechado(true);
+		this.mesa.setOpen(true);
+				
+	}
 
 }
