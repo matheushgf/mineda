@@ -14,6 +14,5 @@ public interface MesaRepository extends CrudRepository<Mesa, Long>{
 
 	@Query("FROM Mesa m WHERE m.isOpen = true")
 	List<Mesa> findMesa_aberta();
-		
-
+	
 }

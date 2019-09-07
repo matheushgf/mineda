@@ -9,4 +9,5 @@ public interface MesaService {
 	public void novaMesa(int quantidade_lugares);
 	public List<Mesa> getMesasAbertas();
 	public Mesa buscaMesa(int id);
+	public void atualizaMesa (int id);
 }

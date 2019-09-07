@@ -46,4 +46,11 @@ public class MesaServiceImpl implements MesaService {
 		return this.mesaRepository.findMesa_aberta();
 	}
 
+	@Override
+	public void atualizaMesa(int id) {
+		Mesa mesa = this.mesaRepository.findById(id);
+		this.mesaRepository.save(mesa);
+		
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fatec.lab.atividade02.entity.Mesa;
 import com.fatec.lab.atividade02.entity.Pedido;
@@ -16,6 +17,9 @@ public class PedidoServiceImpl implements PedidoService{
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private MesaService mesaService;
 
 	public PedidoRepository getPedidoRepository() {
 		return pedidoRepository;
@@ -55,13 +59,18 @@ public class PedidoServiceImpl implements PedidoService{
 	}
 
 	@Override
-	public void novoPedido(int quantidade, float valor, boolean fechado, Mesa mesa) {
-		Pedido pedido= new Pedido();
+	@Transactional
+	public void novoPedido(int quantidade, float valor, boolean fechado) {
+		
+		Pedido pedido= new Pedido();		
+		Mesa mesa = this.mesaService.getMesasAbertas().get(0);
+			
 		pedido.setQuantidade(quantidade);
 		pedido.setValor(valor);
 		pedido.setFechado(fechado);
 		pedido.setMesa(mesa);
 		pedido.reservaMesa();
+		this.mesaService.atualizaMesa(mesa.getId());		
 		this.pedidoRepository.save(pedido);
 						
 	}
