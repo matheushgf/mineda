@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fatec.lab</groupId>
-	<artifactId>atividade02</artifactId>
+	<artifactId>mineda</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>atividade02</name>
-	<description>Atividade 02 lab</description>
+	<name>mineda</name>
+	<description>Atividade Minead</description>
 
 	<properties>
 		<java.version>1.8</java.version>
