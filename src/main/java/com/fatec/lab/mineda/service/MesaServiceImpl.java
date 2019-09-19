@@ -23,11 +23,9 @@ public class MesaServiceImpl implements MesaService {
 		this.mesaRepository = mesaRepository;
 	}
 	
-	public void novaMesa(int quantidade_lugares) {
-		Mesa mesa = new Mesa();
-		mesa.setOpen(true);
-		mesa.setQuantidade_lugares(quantidade_lugares);
+	public Mesa novaMesa(Mesa mesa) {
 		this.mesaRepository.save(mesa);
+		return mesa;
 	}
 	
 	public Optional<Mesa> getProduto(Long mesaId) {

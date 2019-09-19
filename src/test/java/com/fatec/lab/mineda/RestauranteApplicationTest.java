@@ -1,4 +1,4 @@
-package com.fatec.lab.atividade02;
+package com.fatec.lab.mineda;
 
 import static org.junit.Assert.*;
 
@@ -13,12 +13,12 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fatec.lab.atividade02.entity.Mesa;
-import com.fatec.lab.atividade02.entity.Pedido;
-import com.fatec.lab.atividade02.repository.MesaRepository;
-import com.fatec.lab.atividade02.repository.PedidoRepository;
-import com.fatec.lab.atividade02.service.MesaService;
-import com.fatec.lab.atividade02.service.PedidoServiceImpl;
+import com.fatec.lab.mineda.entity.Mesa;
+import com.fatec.lab.mineda.entity.Pedido;
+import com.fatec.lab.mineda.repository.MesaRepository;
+import com.fatec.lab.mineda.repository.PedidoRepository;
+import com.fatec.lab.mineda.service.MesaService;
+import com.fatec.lab.mineda.service.PedidoServiceImpl;
 
 
 @RunWith(SpringRunner.class)
@@ -59,10 +59,10 @@ public class RestauranteApplicationTest {
 		this.pedidoImpl = pedidoImpl;
 		}
 	
-	@Before
-	public void saveMesa() {
-		this.mesaService.novaMesa(4);	
-	}
+//	@Before
+//	public void saveMesa() {
+//		this.mesaService.novaMesa(4);	
+//	}
 	
 	@Test
 	public void testeNovoPedidoRepo() {

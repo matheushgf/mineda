@@ -6,7 +6,7 @@ import com.fatec.lab.mineda.entity.Mesa;
 
 public interface MesaService {
 	public void deleteMesa(Long mesaId);
-	public void novaMesa(int quantidade_lugares);
+	public Mesa novaMesa(Mesa mesa);
 	public List<Mesa> getMesasAbertas();
 	public Mesa buscaMesa(int id);
 	public void atualizaMesa (int id);
