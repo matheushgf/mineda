@@ -12,6 +12,7 @@ public interface ProdutoRepository extends CrudRepository<Produto, Long>{
 	
 	@Query("FROM Produto p WHERE p.nome = :nome")
 	Produto findByNome(final String nome);
-
 	
+	@Query("DELETE FROM Produto p WHERE p.id = :id")
+	Produto deleteById(final int id);
 }

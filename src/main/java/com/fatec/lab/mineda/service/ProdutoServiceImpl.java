@@ -6,11 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fatec.lab.mineda.entity.Pedido;
 import com.fatec.lab.mineda.entity.Produto;
 import com.fatec.lab.mineda.repository.ProdutoRepository;
 
 @Service
-public class ProdutoServiceImpl {
+public class ProdutoServiceImpl implements ProdutoService {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
@@ -22,15 +23,15 @@ public class ProdutoServiceImpl {
 		this.produtoRepository = ProdutoRepository;
 	}
 	
-	Produto salvarProduto(Produto produto) {
+	public Produto salvarProduto(Produto produto) {
 		return produtoRepository.save(produto);
 	}
 	
-	Produto upadateProduto(Produto produto) {
+	Produto updateProduto(Produto produto) {
 		return produtoRepository.save(produto);
 	}
 
-	List<Produto> getAllProdutos() {
+	public List<Produto> getAllProdutos() {
 		return   (List<Produto>) produtoRepository.findAll();
 	}
 	   
@@ -38,10 +39,15 @@ public class ProdutoServiceImpl {
 		return produtoRepository.findById(produtoId);
 	}
 	
-	void deleteProduto(Long produtoId) {
-		produtoRepository.deleteById(produtoId);
+
+	@Override
+	public void deleteProduto(int id) {
+		produtoRepository.deleteById(id);
 	}
-	
-	
+
+	@Override
+	public Produto buscaProduto(int id) {
+		return produtoRepository.findById(id);
+	}
 }
 

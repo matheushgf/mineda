@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/produto")
 public class ProdutoController {
+	@Autowired
 	private ProdutoService produtoService;
 	
 	@RequestMapping(value = "/getAll")

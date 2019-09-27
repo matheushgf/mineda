@@ -28,27 +28,35 @@ public class MesaServiceImpl implements MesaService {
 		return mesa;
 	}
 	
-	public Optional<Mesa> getProduto(Long mesaId) {
-		return mesaRepository.findById(mesaId);
+	public void deleteMesa(Long id) {
+		this.mesaRepository.deleteById(id);
 	}
 	
-	public void deleteMesa(Long mesaId) {
-		this.mesaRepository.deleteById(mesaId);
-	}
-	public Mesa buscaMesa(int id) {
-		return this.mesaRepository.findById(id);
+	public Mesa buscaMesa(Long id) {
+		Optional<Mesa> mesa = this.mesaRepository.findById(id);
+		
+		if(mesa.isPresent()) {
+			return this.mesaRepository.findById(id).get();
+		}else {
+			return null;
+		}
 	}
 
-	@Override
 	public List<Mesa> getMesasAbertas() {
 		return this.mesaRepository.findMesa_aberta();
 	}
+	
+	public List<Mesa> getAll() {
+		return this.mesaRepository.getAll();
+	}
 
-	@Override
-	public void atualizaMesa(int id) {
-		Mesa mesa = this.mesaRepository.findById(id);
+	public void atualizaMesa(Long id) {
+		Mesa mesa = this.mesaRepository.findById(id).get();
 		this.mesaRepository.save(mesa);
-		
+	}
+	
+	public Mesa fechaMesa(Long id) {
+		return this.mesaRepository.fechaMesa(id);
 	}
 
 }
