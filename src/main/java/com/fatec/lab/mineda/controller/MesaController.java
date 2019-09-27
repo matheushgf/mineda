@@ -1,6 +1,7 @@
 package com.fatec.lab.mineda.controller;
 
 import com.fatec.lab.mineda.service.MesaService;
+import com.fatec.lab.mineda.view.ViewMesa;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fatec.lab.mineda.entity.Mesa;
 import java.util.Collection;
@@ -25,16 +26,19 @@ public class MesaController {
 	private MesaService mesaService;
 	
 	@RequestMapping(value = "/getAbertas")
+	@JsonView({ViewMesa.MesaAberta.class})
 	public ResponseEntity<Collection<Mesa>> getAbertas() {
 		return new ResponseEntity<Collection<Mesa>>(mesaService.getMesasAbertas(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/getAll")
+	@JsonView({ViewMesa.MesaGeral.class, ViewMesa.MesaId.class})
 	public ResponseEntity<Collection<Mesa>> getAll() {
 		return new ResponseEntity<Collection<Mesa>>(mesaService.getAll(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/getById/{id}")
+	@JsonView({ViewMesa.MesaId.class})
 	public ResponseEntity<Mesa> getById(@PathVariable("id") int id){
 		final Mesa mesa = mesaService.buscaMesa(Long.valueOf(id));
 		
@@ -46,6 +50,7 @@ public class MesaController {
 	}
 	
 	@PostMapping(value = "/novaMesa", produces = MediaType.APPLICATION_JSON_VALUE)
+	@JsonView({ViewMesa.MesaGeral.class})
 	public Mesa novaMesa(@RequestBody Mesa mesa, HttpServletResponse response){
 		response.setContentType("application/json");
 		mesa = mesaService.novaMesa(mesa);
@@ -53,6 +58,7 @@ public class MesaController {
 	}
 	
 	@GetMapping(value = "/fechaMesa/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@JsonView({ViewMesa.MesaId.class, ViewMesa.MesaAberta.class})
 	public ResponseEntity<Mesa> fechaMesa(@PathVariable("id") Long id){
 		return new ResponseEntity<Mesa>(mesaService.fechaMesa(id), HttpStatus.OK);
 	}

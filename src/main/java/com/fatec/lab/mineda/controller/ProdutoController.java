@@ -1,6 +1,8 @@
 package com.fatec.lab.mineda.controller;
 
 import com.fatec.lab.mineda.service.ProdutoService;
+import com.fatec.lab.mineda.view.viewProduto;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fatec.lab.mineda.entity.Produto;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ public class ProdutoController {
 	private ProdutoService produtoService;
 	
 	@RequestMapping(value = "/getAll")
+	@JsonView({viewProduto.ProdutoGeral.class})
 	public ResponseEntity<Collection<Produto>> getAll() {
 		 return new ResponseEntity<Collection<Produto>>(produtoService.getAllProdutos(), HttpStatus.OK);
 	 }

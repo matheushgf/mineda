@@ -10,19 +10,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fatec.lab.mineda.view.ViewMesa;
+import com.fatec.lab.mineda.view.viewProduto;
+
 @Entity
 public class Produto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView({viewProduto.ProdutoGeral.class})
 	private Long id;
+	@JsonView({viewProduto.ProdutoGeral.class, viewProduto.ProdutoNome.class})
 	private String nome;
+	@JsonView({viewProduto.ProdutoGeral.class})
 	private String descricao;
+	@JsonView({viewProduto.ProdutoGeral.class})
 	private Double preco;
+	@JsonView({viewProduto.ProdutoGeral.class, viewProduto.ProdutoTipo.class})
 	private String tipo;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="pedido")
+	@JsonView({viewProduto.ProdutoGeral.class, viewProduto.ProdutoPedido.class})
 	private Pedido pedido;
 	
 	//@OneToMany(mappedBy = "bank")
