@@ -9,9 +9,9 @@ public class ViewPedido {
 	public static class PedidoStatus{
 		/*Mostra se o pedido está aberto ou fechado;*/
 	}
-
-	public static class PedidoMesa{
-		/*Mostra a mesa relacionada ao pedido;*/
+	
+	public static class PedidoCadastro{
+		/*Cadastra um novo pedido;*/
 	}
 
 }

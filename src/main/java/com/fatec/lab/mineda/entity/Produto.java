@@ -2,6 +2,7 @@ package com.fatec.lab.mineda.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ public class Produto {
 	private String descricao;
 	private Double preco;
 	private String tipo;
+	private Date validade;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="pedido")
@@ -35,7 +37,8 @@ public class Produto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	@Column(nullable = true)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -76,7 +79,7 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	private Date validade;
+	
 	
 
 }

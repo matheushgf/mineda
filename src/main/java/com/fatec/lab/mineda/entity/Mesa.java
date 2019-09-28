@@ -9,15 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fatec.lab.mineda.view.ViewPedido;
+
 @Entity
 public class Mesa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
 	private Long id;
 	
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
 	private boolean isOpen;
 	
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
 	private int quantidade_lugares;
 	
 	public Long getId() {

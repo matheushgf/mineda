@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fatec.lab.mineda.entity.Pedido;
 import com.fatec.lab.mineda.service.PedidoService;
+import com.fatec.lab.mineda.view.ViewPedido;
 
 import javassist.NotFoundException;
 
@@ -30,15 +32,16 @@ public class PedidoController {
 	@Autowired
 	private PedidoService pedidoService;
 	
-	@GetMapping(value = "/getAll")
+	@GetMapping(value = "/getall")
+	@JsonView(ViewPedido.PedidoGeral.class)	
 	public ResponseEntity<Collection<Pedido>> getAll() {
 		return new ResponseEntity<Collection<Pedido>>(pedidoService.getAllPedidos(), HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/novo-pedido", produces = MediaType.APPLICATION_JSON_VALUE)
-	//@JsonView(View.All.class)
-	public void savePedido(@RequestBody Pedido pedido) {
-		pedidoService.cadastrarPedido(pedido);	
+	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
+	public void 
+	savePedido(@RequestBody int quantidade, @RequestBody float valor, @RequestBody boolean fechado) {		 
+		pedidoService.novoPedido(quantidade, valor, fechado) ;	
 	}
 	
 	@DeleteMapping(value = "/pedido/{numero}")
