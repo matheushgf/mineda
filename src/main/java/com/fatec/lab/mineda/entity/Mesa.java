@@ -1,29 +1,27 @@
 package com.fatec.lab.mineda.entity;
 
-import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fatec.lab.mineda.view.ViewPedido;
+import com.fatec.lab.mineda.view.ViewMesa;
+
 
 @Entity
 public class Mesa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewMesa.MesaGeral.class, ViewMesa.MesaId.class, ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
 	private Long id;
 	
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewMesa.MesaGeral.class, ViewMesa.MesaAberta.class, ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
 	private boolean isOpen;
 	
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewMesa.MesaGeral.class, ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
 	private int quantidade_lugares;
 	
 	public Long getId() {
