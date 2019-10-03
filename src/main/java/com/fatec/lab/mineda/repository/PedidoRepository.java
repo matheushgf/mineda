@@ -1,9 +1,12 @@
 package com.fatec.lab.mineda.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.fatec.lab.mineda.entity.Pedido;
+import com.fatec.lab.mineda.entity.Produto;
 
 public interface PedidoRepository extends CrudRepository<Pedido, Long>{
 	
@@ -12,6 +15,9 @@ public interface PedidoRepository extends CrudRepository<Pedido, Long>{
 	
 	@Query("FROM Pedido p WHERE p.fechado = :status")
 	Pedido buscaByStatusFechado (final boolean status);
+	
+	@Query("FROM Pedido p WHERE p.numPedido = :numPedido")
+	List<Produto> getProdutosByPedidoId (final int numPedido);
 	
 
 }

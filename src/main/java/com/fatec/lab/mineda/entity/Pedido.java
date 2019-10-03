@@ -54,7 +54,7 @@ public class Pedido {
 	}
 
 	@OneToMany(mappedBy = "pedido")
-	private Set<Produto> pipoca;
+	private Set<Produto> produto;
 
 	public int getQuantidade() {
 		return quantidade;

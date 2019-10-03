@@ -54,8 +54,7 @@ public class PedidoServiceImpl implements PedidoService{
 
 	@Override
 	public List<Produto> getProdutosPedido(int numPedido) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pedidoRepository.getProdutosByPedidoId(numPedido);
 	}
 
 	@Override
