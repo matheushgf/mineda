@@ -6,11 +6,11 @@ public class viewProduto {
 		/*Mostra todos os atributos da produto;*/
 	}
 
-	public static class ProdutoNome{
+	public static class ProdutoId{
 		/*Mostra apenas o nome do produto*/
 	}
 
-	public static class ProdutoTipo extends ProdutoNome{
+	public static class ProdutoTipo extends ProdutoId{
 		/*Mostra os nome o produto e qual seu tipo (categoria) */
 	}
 

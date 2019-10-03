@@ -23,7 +23,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 		this.produtoRepository = ProdutoRepository;
 	}
 	
-	public Produto salvarProduto(Produto produto) {
+	public Produto novoProduto(Produto produto) {
 		return produtoRepository.save(produto);
 	}
 	
@@ -32,7 +32,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 	}
 
 	public List<Produto> getAllProdutos() {
-		return   (List<Produto>) produtoRepository.findAll();
+		return produtoRepository.getAll();
 	}
 	   
 	public Optional<Produto> getProduto(Long produtoId) {
@@ -41,13 +41,13 @@ public class ProdutoServiceImpl implements ProdutoService {
 	
 
 	@Override
-	public void deleteProduto(int id) {
+	public void deleteProduto(Long id) {
 		produtoRepository.deleteById(id);
 	}
 
 	@Override
-	public Produto buscaProduto(int id) {
-		return produtoRepository.findById(id);
+	public Produto buscaProduto(Long id) {
+		return produtoRepository.findById(id).get();
 	}
 }
 

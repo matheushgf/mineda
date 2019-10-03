@@ -39,9 +39,8 @@ public class PedidoController {
 	}
 	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void 
-	savePedido(@RequestBody int quantidade, @RequestBody float valor, @RequestBody boolean fechado) {		 
-		pedidoService.novoPedido(quantidade, valor, fechado) ;	
+	public void savePedido(@RequestBody Pedido pedido) {		 
+		pedidoService.cadastrarPedido(pedido);	
 	}
 	
 	@DeleteMapping(value = "/pedido/{numero}")

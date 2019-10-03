@@ -22,7 +22,7 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView({viewProduto.ProdutoGeral.class})
 	private Long id;
-	@JsonView({viewProduto.ProdutoGeral.class, viewProduto.ProdutoNome.class})
+	@JsonView({viewProduto.ProdutoGeral.class, viewProduto.ProdutoId.class})
 	private String nome;
 	@JsonView({viewProduto.ProdutoGeral.class})
 	private String descricao;
