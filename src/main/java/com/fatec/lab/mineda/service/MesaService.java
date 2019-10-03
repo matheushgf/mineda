@@ -12,5 +12,5 @@ public interface MesaService {
 	public List<Mesa> getAll();
 	public Mesa buscaMesa(Long id);
 	public void atualizaMesa (Long id);
-	public Mesa fechaMesa (Long id);
+	public void fechaMesa (Long id);
 }

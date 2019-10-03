@@ -16,5 +16,5 @@ public class viewProduto {
 
 	public static class ProdutoPedido{
 		/*Mostra o pedido relacionado ao produto*/
-	}
+}
 }

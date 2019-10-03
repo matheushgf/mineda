@@ -55,8 +55,8 @@ public class MesaServiceImpl implements MesaService {
 		this.mesaRepository.save(mesa);
 	}
 	
-	public Mesa fechaMesa(Long id) {
-		return this.mesaRepository.fechaMesa(id);
+	public void fechaMesa(Long id) {
+		this.mesaRepository.fechaMesa(id);
 	}
 
 }

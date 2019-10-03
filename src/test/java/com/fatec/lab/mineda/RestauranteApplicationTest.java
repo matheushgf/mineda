@@ -100,7 +100,9 @@ public class RestauranteApplicationTest {
 		mesa.setOpen(true);
 		mesa.setQuantidade_lugares(4);
 		
+
 		assertTrue((Long)mesa.getId() != null);
+
 	}
 	
 	@Test 

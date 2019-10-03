@@ -39,8 +39,16 @@ public class PedidoController {
 	}
 	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void savePedido(@RequestBody Pedido pedido) {		 
-		pedidoService.cadastrarPedido(pedido);	
+	public void savePedido(@RequestBody Pedido pedido) {
+		try
+		{
+			pedidoService.cadastrarPedido(pedido);
+		}
+		catch (Exception e)
+		{
+			
+		}
+			
 	}
 	
 	@DeleteMapping(value = "/pedido/{numero}")

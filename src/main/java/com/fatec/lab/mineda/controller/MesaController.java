@@ -58,8 +58,8 @@ public class MesaController {
 	}
 	
 	@GetMapping(value = "/fechaMesa/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@JsonView({ViewMesa.MesaId.class, ViewMesa.MesaAberta.class})
-	public ResponseEntity<Mesa> fechaMesa(@PathVariable("id") Long id){
-		return new ResponseEntity<Mesa>(mesaService.fechaMesa(id), HttpStatus.OK);
+	public void fechaMesa(@PathVariable("id") Long id){
+		mesaService.fechaMesa(id);
+
 	}
 }
