@@ -24,5 +24,5 @@ public interface MesaRepository extends CrudRepository<Mesa, Long>{
 	@Transactional
 	@Modifying
 	@Query("UPDATE Mesa m SET m.isOpen = false WHERE m.id = :id")
-	void fechaMesa(final Long id);
+	void fechaMesa(final Long id);	
 }

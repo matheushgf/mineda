@@ -1,14 +1,14 @@
 package com.fatec.lab.mineda.entity;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fatec.lab.mineda.view.ViewPedido;
 import com.fatec.lab.mineda.view.ViewMesa;
-
+import javax.persistence.OneToMany;
 
 @Entity
 public class Mesa {
@@ -48,8 +48,10 @@ public class Mesa {
 		this.isOpen = isOpen;
 	}
 	
+	@OneToMany(mappedBy = "mesa")
+	private List<Pedido> pedidos;
 	
-	//@ManyToOne	
-	//private Pedido pedido;
-
+	public List<Pedido> getPedidos(){
+		return this.pedidos;
+	}
 }

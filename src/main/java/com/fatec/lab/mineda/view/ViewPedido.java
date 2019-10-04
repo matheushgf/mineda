@@ -13,5 +13,9 @@ public class ViewPedido {
 	public static class PedidoCadastro{
 		/*Cadastra um novo pedido;*/
 	}
+	
+	public static class PedidoSemMesa{
+		
+	}
 
 }

@@ -2,9 +2,13 @@ package com.fatec.lab.mineda.controller;
 
 import com.fatec.lab.mineda.service.MesaService;
 import com.fatec.lab.mineda.view.ViewMesa;
+import com.fatec.lab.mineda.view.ViewPedido;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fatec.lab.mineda.entity.Mesa;
+import com.fatec.lab.mineda.entity.Pedido;
+
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,7 +42,7 @@ public class MesaController {
 	}
 	
 	@RequestMapping(value = "/getById/{id}")
-	@JsonView({ViewMesa.MesaId.class})
+	@JsonView({ViewMesa.MesaGeral.class})
 	public ResponseEntity<Mesa> getById(@PathVariable("id") int id){
 		final Mesa mesa = mesaService.buscaMesa(Long.valueOf(id));
 		
@@ -62,4 +66,11 @@ public class MesaController {
 		mesaService.fechaMesa(id);
 
 	}
+
+	@GetMapping(value = "/getPedidos/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@JsonView({ViewPedido.PedidoSemMesa.class})
+	public List<Pedido> getPedidosMesa(@PathVariable("id") Long id){
+		return this.mesaService.buscaMesa(id).getPedidos();
+	}
+	
 }

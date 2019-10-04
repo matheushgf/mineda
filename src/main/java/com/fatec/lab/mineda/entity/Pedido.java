@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -20,23 +21,24 @@ public class Pedido {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
 	private int numPedido;
 	
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
 	private int quantidade;
 	
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
 	private float valor;
 
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
 	private boolean fechado;
 	
 	@ManyToOne
 	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JoinColumn(name="mesa_id")
 	private Mesa mesa;
 
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
 	public boolean isFechado() {
 		return fechado;
 	}
@@ -52,9 +54,6 @@ public class Pedido {
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
-
-	@OneToMany(mappedBy = "pedido")
-	private Set<Produto> produto;
 
 	public int getQuantidade() {
 		return quantidade;
