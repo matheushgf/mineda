@@ -17,5 +17,11 @@ public class ViewPedido {
 	public static class PedidoSemMesa{
 		
 	}
+	
+
+	public static class PedidoById{
+		
+	}
+
 
 }

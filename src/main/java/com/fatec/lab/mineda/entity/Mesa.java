@@ -15,13 +15,13 @@ public class Mesa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView({ViewMesa.MesaGeral.class, ViewMesa.MesaId.class, ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewMesa.MesaGeral.class, ViewMesa.MesaId.class, ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoById.class})
 	private Long id;
 	
-	@JsonView({ViewMesa.MesaGeral.class, ViewMesa.MesaAberta.class, ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewMesa.MesaGeral.class, ViewMesa.MesaAberta.class, ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoById.class})
 	private boolean isOpen;
 	
-	@JsonView({ViewMesa.MesaGeral.class, ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewMesa.MesaGeral.class, ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoById.class})
 	private int quantidade_lugares;
 	
 	public Long getId() {

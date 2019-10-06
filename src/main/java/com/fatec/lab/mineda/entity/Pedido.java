@@ -18,23 +18,23 @@ import com.fatec.lab.mineda.view.ViewPedido;
 
 @Entity
 public class Pedido {
-	
+		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
 	private int numPedido;
 	
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class})
 	private int quantidade;
 	
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class})
 	private float valor;
 
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class})
 	private boolean fechado;
 	
 	@ManyToOne
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoById.class})
 	@JoinColumn(name="mesa_id")
 	private Mesa mesa;
 

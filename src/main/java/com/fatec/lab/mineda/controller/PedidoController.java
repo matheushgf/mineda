@@ -38,17 +38,23 @@ public class PedidoController {
 		return new ResponseEntity<Collection<Pedido>>(pedidoService.getAllPedidos(), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/getPedidoById/{numPedido}")
+	@JsonView(ViewPedido.PedidoById.class)	
+	public ResponseEntity<Pedido> getPedidoById(@PathVariable  Integer numPedido) {
+		return new ResponseEntity<Pedido>(pedidoService.buscaPedido(numPedido), HttpStatus.OK);
+	}
+	
+	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void savePedido(@RequestBody Pedido pedido) {
+	public void savePedido(@RequestBody Pedido pedido) throws Exception {
 		try
 		{
 			pedidoService.cadastrarPedido(pedido);
 		}
 		catch (Exception e)
 		{
-			
+			throw new Exception("Something went wrong :(");			
 		}
-			
 	}
 	
 	@DeleteMapping(value = "/pedido/{numero}")
