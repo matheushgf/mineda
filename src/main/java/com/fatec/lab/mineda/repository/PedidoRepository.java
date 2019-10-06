@@ -19,5 +19,8 @@ public interface PedidoRepository extends CrudRepository<Pedido, Long>{
 	@Query("FROM Pedido p WHERE p.numPedido = :numPedido")
 	List<Produto> getProdutosByPedidoId (final int numPedido);
 	
+	@Query("FROM Pedido p WHERE p.valor >= :valor and p.fechado = :fechado")
+	List<Pedido> getPedidoStatusValor(final float valor, final boolean fechado);
+	
 
 }

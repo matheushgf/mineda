@@ -80,5 +80,10 @@ public class PedidoServiceImpl implements PedidoService{
 		pedido.fechaPedido();
 		this.pedidoRepository.save(pedido);
 	}
+
+	@Override
+	public List<Pedido> getPedidoStatusMinValor(float valor, boolean fechado) {
+		return this.pedidoRepository.getPedidoStatusValor(valor, fechado);
+	}
 	
 }

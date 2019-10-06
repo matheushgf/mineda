@@ -22,6 +22,10 @@ public class ViewPedido {
 	public static class PedidoById{
 		
 	}
+	
+	public static class PedidoStatusMInValor{
+		
+	}
 
 
 }

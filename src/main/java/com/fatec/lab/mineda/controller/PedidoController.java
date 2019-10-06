@@ -44,6 +44,13 @@ public class PedidoController {
 		return new ResponseEntity<Pedido>(pedidoService.buscaPedido(numPedido), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/getPedidoByMinValueAndStatus/{valor}/{fechado}")
+	@JsonView(ViewPedido.PedidoStatusMInValor.class)	
+	public ResponseEntity<Collection<Pedido>>getPedidoStatusMinValor(@PathVariable  Float valor, @PathVariable Boolean fechado) {
+		return new ResponseEntity<Collection<Pedido>>(pedidoService.getPedidoStatusMinValor(valor, fechado), HttpStatus.OK);
+	}
+	
+	
 	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void savePedido(@RequestBody Pedido pedido) throws Exception {

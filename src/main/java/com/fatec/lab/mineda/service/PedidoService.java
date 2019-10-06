@@ -14,4 +14,5 @@ public interface PedidoService {
 	public Pedido buscaPedido(int numPedido);
 	public List<Produto> getProdutosPedido(int numPedido);
 	public void cadastrarPedido(Pedido pedido);
+	public List<Pedido> getPedidoStatusMinValor(float valor, boolean fechado);
 }

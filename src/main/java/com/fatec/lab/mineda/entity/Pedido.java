@@ -21,16 +21,16 @@ public class Pedido {
 		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoStatusMInValor.class})
 	private int numPedido;
 	
 	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class})
 	private int quantidade;
 	
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class, ViewPedido.PedidoStatusMInValor.class})
 	private float valor;
 
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class, ViewPedido.PedidoStatusMInValor.class})
 	private boolean fechado;
 	
 	@ManyToOne
