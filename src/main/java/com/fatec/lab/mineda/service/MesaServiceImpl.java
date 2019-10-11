@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fatec.lab.mineda.entity.Mesa;
+import com.fatec.lab.mineda.exception.BadRequestErrorException;
+import com.fatec.lab.mineda.exception.NotFoundException;
 import com.fatec.lab.mineda.repository.MesaRepository;
-
+import javassist.tools.rmi.ObjectNotFoundException;
 @Service
 public class MesaServiceImpl implements MesaService {
 	@Autowired
@@ -24,21 +26,27 @@ public class MesaServiceImpl implements MesaService {
 	}
 	
 	public Mesa novaMesa(Mesa mesa) {
-		this.mesaRepository.save(mesa);
-		return mesa;
+		//if(mesa.getQuantidade_lugares() <= 0) {
+			return this.mesaRepository.save(mesa);
+		/*}else {
+			throw new BadRequestErrorException();
+		}*/
 	}
 	
 	public void deleteMesa(Long id) {
-		this.mesaRepository.deleteById(id);
+		if(id == null) {
+			throw new NotFoundException();
+		}else {
+			this.mesaRepository.deleteById(id);
+		}
 	}
 	
 	public Mesa buscaMesa(Long id) {
 		Optional<Mesa> mesa = this.mesaRepository.findById(id);
-		
 		if(mesa.isPresent()) {
 			return this.mesaRepository.findById(id).get();
 		}else {
-			return null;
+			throw new NotFoundException();
 		}
 	}
 
@@ -52,11 +60,16 @@ public class MesaServiceImpl implements MesaService {
 
 	public void atualizaMesa(Long id) {
 		Mesa mesa = this.mesaRepository.findById(id).get();
-		this.mesaRepository.save(mesa);
 	}
 	
 	public void fechaMesa(Long id) {
-		this.mesaRepository.fechaMesa(id);
+		Mesa idAux = buscaMesa(id);
+		if(idAux == null) {
+			throw new NotFoundException();
+		}else {
+			this.mesaRepository.fechaMesa(id);
+		}
+		
 	}
 
 }

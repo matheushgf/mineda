@@ -28,49 +28,49 @@ import org.springframework.web.bind.annotation.RestController;
 public class MesaController {
 	@Autowired
 	private MesaService mesaService;
-	
+
 	@RequestMapping(value = "/getAbertas")
-	@JsonView({ViewMesa.MesaAberta.class})
+	@JsonView({ ViewMesa.MesaAberta.class })
 	public ResponseEntity<Collection<Mesa>> getAbertas() {
 		return new ResponseEntity<Collection<Mesa>>(mesaService.getMesasAbertas(), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/getAll")
-	@JsonView({ViewMesa.MesaGeral.class, ViewMesa.MesaId.class})
+	@JsonView({ ViewMesa.MesaGeral.class, ViewMesa.MesaId.class })
 	public ResponseEntity<Collection<Mesa>> getAll() {
 		return new ResponseEntity<Collection<Mesa>>(mesaService.getAll(), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/getById/{id}")
-	@JsonView({ViewMesa.MesaGeral.class})
-	public ResponseEntity<Mesa> getById(@PathVariable("id") int id){
+	@JsonView({ ViewMesa.MesaGeral.class })
+	public ResponseEntity<Mesa> getById(@PathVariable("id") int id) {
 		final Mesa mesa = mesaService.buscaMesa(Long.valueOf(id));
-		
-		if(mesa != null) {
+
+		if (mesa != null) {
 			return new ResponseEntity<Mesa>(mesa, HttpStatus.OK);
-		}else {
+		} else {
 			return new ResponseEntity<Mesa>(mesa, HttpStatus.NO_CONTENT);
 		}
 	}
-	
+
 	@PostMapping(value = "/novaMesa", produces = MediaType.APPLICATION_JSON_VALUE)
-	@JsonView({ViewMesa.MesaGeral.class})
-	public Mesa novaMesa(@RequestBody Mesa mesa, HttpServletResponse response){
+	@JsonView({ ViewMesa.MesaGeral.class })
+	public Mesa novaMesa(@RequestBody Mesa mesa, HttpServletResponse response) {
 		response.setContentType("application/json");
 		mesa = mesaService.novaMesa(mesa);
 		return mesa;
 	}
-	
+
 	@GetMapping(value = "/fechaMesa/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void fechaMesa(@PathVariable("id") Long id){
+	public void fechaMesa(@PathVariable("id") Long id) {
 		mesaService.fechaMesa(id);
 
 	}
 
 	@GetMapping(value = "/getPedidos/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@JsonView({ViewPedido.PedidoSemMesa.class})
-	public List<Pedido> getPedidosMesa(@PathVariable("id") Long id){
+	@JsonView({ ViewPedido.PedidoSemMesa.class })
+	public List<Pedido> getPedidosMesa(@PathVariable("id") Long id) {
 		return this.mesaService.buscaMesa(id).getPedidos();
 	}
-	
+
 }

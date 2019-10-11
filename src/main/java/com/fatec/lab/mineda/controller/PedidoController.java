@@ -64,15 +64,14 @@ public class PedidoController {
 		}
 	}
 	
-	@DeleteMapping(value = "/pedido/{numero}")
-	//@JsonView(View.All.class)
-	public ResponseEntity<Long>  deletaPedido(@PathVariable Long numPedido) {
+	@DeleteMapping(value = "/delete/{numero}")
+	public ResponseEntity<Long>  deletaPedido(@PathVariable("numero") Long numPedido) {
 		try{
 			pedidoService.deletePedido(numPedido);
 			return new ResponseEntity<>(numPedido, HttpStatus.OK);
 		}
 		catch (Exception e){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

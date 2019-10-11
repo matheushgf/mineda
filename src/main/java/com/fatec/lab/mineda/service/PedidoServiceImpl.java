@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fatec.lab.mineda.entity.Mesa;
 import com.fatec.lab.mineda.entity.Pedido;
 import com.fatec.lab.mineda.entity.Produto;
+import com.fatec.lab.mineda.exception.InternalServerException;
+import com.fatec.lab.mineda.exception.NotFoundException;
 import com.fatec.lab.mineda.repository.PedidoRepository;
 
 @Service
@@ -43,18 +45,27 @@ public class PedidoServiceImpl implements PedidoService{
 	}
 
 	@Override
-	public void deletePedido(Long numPedido) {
-		this.pedidoRepository.deleteById(numPedido);	
+	public void deletePedido(Long numPedido) throws InternalServerException {
+		this.pedidoRepository.deleteById(numPedido);		
 	}
 
 	@Override
 	public Pedido buscaPedido(int numPedido) {
-		return this.pedidoRepository.findByNumPedido(numPedido);		
+		Pedido pedido = this.pedidoRepository.findByNumPedido(numPedido);
+		if(pedido != null) {
+		return this.pedidoRepository.findByNumPedido(numPedido);	
+		}else {
+			throw new NotFoundException();
+		}
 	}
 
 	@Override
 	public List<Produto> getProdutosPedido(int numPedido) {
-		return this.pedidoRepository.getProdutosByPedidoId(numPedido);
+		if(buscaPedido(numPedido) != null) {
+			return this.pedidoRepository.getProdutosByPedidoId(numPedido);
+		}else {
+			throw new NotFoundException();
+		}
 	}
 
 	@Override
@@ -77,13 +88,25 @@ public class PedidoServiceImpl implements PedidoService{
 	@Override
 	public void fechaPedido(int numPedido) {
 		Pedido pedido = this.pedidoRepository.findByNumPedido(numPedido);
-		pedido.fechaPedido();
-		this.pedidoRepository.save(pedido);
+		if(pedido != null) {
+			pedido.fechaPedido();
+			this.pedidoRepository.save(pedido);
+		}else {
+			throw new NotFoundException();
+		}
+		
 	}
+
+	
 
 	@Override
 	public List<Pedido> getPedidoStatusMinValor(float valor, boolean fechado) {
-		return this.pedidoRepository.getPedidoStatusValor(valor, fechado);
+		List<Pedido> pedidos = this.pedidoRepository.getPedidoStatusValor(valor, fechado);
+		if(pedidos != null) {
+			return this.pedidoRepository.getPedidoStatusValor(valor, fechado);
+		}else {
+			throw new NotFoundException();
+		}
 	}
 	
 }

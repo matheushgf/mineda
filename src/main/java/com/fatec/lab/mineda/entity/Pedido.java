@@ -38,7 +38,7 @@ public class Pedido {
 	@JoinColumn(name="mesa_id")
 	private Mesa mesa;
 
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class,  ViewPedido.PedidoStatusMInValor.class})
 	public boolean isFechado() {
 		return fechado;
 	}

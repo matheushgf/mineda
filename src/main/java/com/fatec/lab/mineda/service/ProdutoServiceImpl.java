@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fatec.lab.mineda.entity.Mesa;
 import com.fatec.lab.mineda.entity.Pedido;
 import com.fatec.lab.mineda.entity.Produto;
+import com.fatec.lab.mineda.exception.NotFoundException;
 import com.fatec.lab.mineda.repository.ProdutoRepository;
 
 @Service
@@ -47,7 +49,12 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Override
 	public Produto buscaProduto(Long id) {
-		return produtoRepository.findById(id).get();
+		Optional<Produto> produto = this.produtoRepository.findById(id);
+		if(produto.isPresent()) {
+			return this.produtoRepository.findById(id).get();
+		}else {
+			throw new NotFoundException();
+		}
 	}
 }
 

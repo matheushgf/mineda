@@ -3,7 +3,12 @@ package com.fatec.lab.mineda.controller;
 import com.fatec.lab.mineda.service.ProdutoService;
 import com.fatec.lab.mineda.view.ViewMesa;
 import com.fatec.lab.mineda.view.viewProduto;
+
+import javassist.tools.rmi.ObjectNotFoundException;
+
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fatec.lab.mineda.entity.Mesa;
+import com.fatec.lab.mineda.entity.Pedido;
 import com.fatec.lab.mineda.entity.Produto;
 import java.util.Collection;
 
@@ -40,14 +45,11 @@ public class ProdutoController {
 	}	
 	
 	@RequestMapping(value = "/getById/{id}")
-	@JsonView({viewProduto.ProdutoGeral.class, viewProduto.ProdutoId.class})
-	public ResponseEntity<Produto> getById(@PathVariable("id") int id){
-		final Produto produto = produtoService.buscaProduto(Long.valueOf(id));
+	@JsonView({viewProduto.ProdutoGeral.class})
+	public ResponseEntity<Produto> getById(@PathVariable("id") int id) throws ObjectNotFoundException{
 		
-		if(produto != null) {
-			return new ResponseEntity<Produto>(produto, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<Produto>(produto, HttpStatus.NO_CONTENT);
-		}
+		return new ResponseEntity<Produto>(produtoService.buscaProduto((long) id), HttpStatus.OK);
+		
+		
 	}
 }
