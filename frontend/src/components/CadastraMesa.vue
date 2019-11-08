@@ -2,13 +2,19 @@
   <div id="app">
     <div id="nav">
       <router-link to="/mesa">voltar</router-link>
-      <div>
-        <h3>Dados da Mesa </h3>
-        <p>
-          Quantidade de lugares:
-          <input type="number" v-model="lugares">
-        </p>
-      </div>
+      <form @submit.prevent="onSubmit">
+        <div>
+          <h3>Dados da Mesa </h3>
+          <p>
+            Quantidade de lugares:
+            <input type="number" v-model="lugares">
+          </p>
+        </div>
+        <div @if>
+
+        </div>
+        <input type="submit" value="Enviar">
+      </form>
     </div>
     <router-view/>
   </div>
@@ -36,3 +42,24 @@
   color: #42b983;
 }
 </style>
+<script>
+// @ is an alias to /src
+import axios from 'axios'
+
+export default {
+  name: 'mesa',
+  methods: {
+    onSubmit () {
+      axios.post('mesa/novaMesa',
+        {
+          quantidade_lugares: this.lugares,
+          isOpen: true
+        })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(error => console.log(error))
+    }
+  }
+}
+</script>

@@ -51,8 +51,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Mesa.vue')
   },
   {
-    path: '/mesa/cadastro',
+    path: '/mesa/lista',
     name: 'mesa',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/ListaMesa.vue')
+  },
+  {
+    path: '/mesa/cadastro',
+    name: 'mesa_cadastro',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

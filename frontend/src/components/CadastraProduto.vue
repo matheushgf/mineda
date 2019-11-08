@@ -40,7 +40,9 @@
   </div>
 </template>
 
-<!--script>
+<script>
+import { AxiosInstance as axios } from 'axios'
+
 export default {
   name: 'app',
   data () {
@@ -55,38 +57,38 @@ export default {
   methods: {
     onSubmit () {
       if (this.nome.trim().length === 0) {
-        alert('O nome deve ser preenchido!')
-        }
+        //alert('O nome deve ser preenchido!')
+        this.erro_nome = true
+      }
       if (this.descricao.trim().length === 0) {
-        alert('A descrição deve ser preenchida!')
-        }
+        //alert('A descrição deve ser preenchida!')
+      }
       if (this.preco.trim().length === 0) {
-        alert('O preço deve ser preenchido!')
-        }
+        //alert('O preço deve ser preenchido!')
+      }
       if (this.tipo.trim().length === 0) {
-        alert('O tipo deve ser preenchido!')
-        }
+        //alert('O tipo deve ser preenchido!')
+      }
       if (this.validade.trim().length === 0) {
-        alert('A validade deve ser preenchida!')
-        } 
-      else { 
-          axios.post('produto/novoProduto',
-      {
-        nome: this.nome,
-        Descricao: this.descricao,
-        Preco: this.preco,
-        Tipo: this.tipo,
-        Validade: this.validade,
-      })
-      .then(res => {
-          console.log(res)
-      })
-        .catch(error => console.log(error))
+        //alert('A validade deve ser preenchida!')
+      } else {
+        axios.post('produto/novoProduto',
+          {
+            nome: this.nome,
+            Descricao: this.descricao,
+            Preco: this.preco,
+            Tipo: this.tipo,
+            Validade: this.validade
+          })
+          .then(res => {
+            console.log(res)
+          })
+          .catch(error => console.log(error))
       }
     }
   }
 }
-</script-->
+</script>
 
 <style>
 #app {
