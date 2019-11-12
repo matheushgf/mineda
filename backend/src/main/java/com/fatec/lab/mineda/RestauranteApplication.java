@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.fatec.lab.mineda.entity.Mesa;
 import com.fatec.lab.mineda.entity.Pedido;
 import com.fatec.lab.mineda.service.MesaService;
 import com.fatec.lab.mineda.service.PedidoService;
 import com.fatec.lab.mineda.service.ProdutoService;
+import com.fatec.lab.mineda.service.SegurancaServiceImpl;
 
 @SpringBootApplication
 public class RestauranteApplication implements CommandLineRunner{
@@ -21,6 +23,8 @@ public class RestauranteApplication implements CommandLineRunner{
 	private ProdutoService produtoService;
 	@Autowired
 	private PedidoService pedidoService;
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RestauranteApplication.class, args);
