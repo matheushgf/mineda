@@ -26,6 +26,7 @@ public class RestauranteApplication implements CommandLineRunner{
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(RestauranteApplication.class, args);
 	}

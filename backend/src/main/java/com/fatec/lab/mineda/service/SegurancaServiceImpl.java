@@ -9,24 +9,27 @@ import org.springframework.stereotype.Service;
 import com.fatec.lab.mineda.entity.Usuario;
 import com.fatec.lab.mineda.repository.UsuarioRepository;
 
-@Service("userDetailsService")
-public class SegurancaServiceImpl implements UserDetailsService {
 
+@Service("segurancaService")
+public class SegurancaServiceImpl implements UserDetailsService {
+	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
-	public void setUsuarioRepo(UsuarioRepository usuarioRepository) {
-	this.usuarioRepository = usuarioRepository;
+	private UsuarioRepository usuarioRepo;
+
+	/**
+	 * @param usuarioRepo the usuarioRepo to set
+	 */
+	public void setUsuarioRepo(UsuarioRepository usuarioRepo) {
+		this.usuarioRepo = usuarioRepo;
 	}
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	Usuario usuario = usuarioRepository.findByUsername(username);
-	if(usuario == null) {
-	throw new UsernameNotFoundException(username);
+		Usuario usuario = usuarioRepo.findByNome(username);
+		if(usuario == null) {
+			throw new UsernameNotFoundException(username);
+		}
+		return usuario;
 	}
-	return usuario;
-	}
-
 
 }
