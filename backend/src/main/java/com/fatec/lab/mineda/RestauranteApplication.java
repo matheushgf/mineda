@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.fatec.lab.mineda.entity.Mesa;
 import com.fatec.lab.mineda.entity.Pedido;
@@ -21,11 +23,13 @@ public class RestauranteApplication implements CommandLineRunner{
 	private ProdutoService produtoService;
 	@Autowired
 	private PedidoService pedidoService;
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RestauranteApplication.class, args);
 	}
-	
+		
 	public void setMesaService(MesaService mesaService) {
 		this.mesaService = mesaService;
 	}
