@@ -18,14 +18,14 @@ import com.fatec.lab.mineda.entity.Usuario;
 
 public class JwtAuthenticationFilter extends GenericFilterBean {
 
-    private String tokenHeader = "Authorization";
+    private static String HEADER = "Authorization";
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         try {
             HttpServletRequest servletRequest = (HttpServletRequest) request;
-            String authorization = servletRequest.getHeader(tokenHeader);
+            String authorization = servletRequest.getHeader(HEADER);
             if (authorization != null) {
                 Usuario usuario = JwtUtils.parseToken(authorization.replaceAll("Bearer ", ""));
                 Authentication credentials = new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword(), usuario.getAuthorities());

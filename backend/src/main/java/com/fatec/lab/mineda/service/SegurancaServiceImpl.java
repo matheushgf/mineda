@@ -16,9 +16,6 @@ public class SegurancaServiceImpl implements UserDetailsService {
 	@Autowired
 	private UsuarioRepository usuarioRepo;
 
-	/**
-	 * @param usuarioRepo the usuarioRepo to set
-	 */
 	public void setUsuarioRepo(UsuarioRepository usuarioRepo) {
 		this.usuarioRepo = usuarioRepo;
 	}
@@ -31,5 +28,4 @@ public class SegurancaServiceImpl implements UserDetailsService {
 		}
 		return usuario;
 	}
-
 }
