@@ -10,17 +10,16 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-@Table(name = "AUT_AUTORIZACAO")
 public class Autorizacao implements GrantedAuthority {
 
 	private static final long serialVersionUID = -7578937961979778761L;
 
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "AUT_ID")
+	@Column(name="AUT_ID")
 	private Long id;
     
-    @Column(name = "AUT_NOME", unique=true, length = 20, nullable = false)
+    @Column( unique=true, length = 20, nullable = false)
     private String nome;
     
 	public Long getId() {

@@ -20,20 +20,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "USR_USUARIO")
 public class Usuario implements UserDetails {
 
 	private static final long serialVersionUID = 1507218635788384719L;
 
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "USR_ID")
+	@Column(name="USR_ID")
 	private Long id;
     
-    @Column(name = "USR_NOME", unique=true, length = 20, nullable = false)
+    @Column(unique=true, length = 20, nullable = false)
     private String nome;
     
-    @Column(name = "USR_SENHA", length = 50, nullable = false)
+    @Column(length = 50, nullable = false)
     private String senha;
     
     @ManyToMany(fetch = FetchType.EAGER)
