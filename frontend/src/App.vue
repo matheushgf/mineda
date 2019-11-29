@@ -5,6 +5,7 @@
       <router-link to="/pedido">Pedido</router-link> |
       <router-link to="/produto">Produto</router-link> |
       <router-link to="/mesa">Mesa</router-link>
+      <a v-if="usuario" @click="logout">Logout</a>
     </div>
     <router-view/>
   </div>
