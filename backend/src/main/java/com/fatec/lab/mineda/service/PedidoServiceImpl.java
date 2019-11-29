@@ -75,7 +75,7 @@ public class PedidoServiceImpl implements PedidoService{
 		Pedido pedido= new Pedido();		
 		Mesa mesa = this.mesaService.getMesasAbertas().get(0);
 			
-		pedido.setQuantidade(quantidade);
+		//pedido.setQuantidade(quantidade);
 		pedido.setValor(valor);
 		pedido.setFechado(fechado);
 		pedido.setMesa(mesa);
