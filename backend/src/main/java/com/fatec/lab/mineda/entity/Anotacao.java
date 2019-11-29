@@ -20,8 +20,6 @@ import com.fatec.lab.mineda.view.ViewSecurity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "ANT_ANOTACAO")
 public class Anotacao implements Serializable {

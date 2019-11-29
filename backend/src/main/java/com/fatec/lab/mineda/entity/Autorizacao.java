@@ -16,8 +16,6 @@ import com.fatec.lab.mineda.view.ViewSecurity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "AUT_AUTORIZACAO")
 public class Autorizacao implements GrantedAuthority {

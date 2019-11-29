@@ -26,8 +26,6 @@ import com.fatec.lab.mineda.view.ViewSecurity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "USR_USUARIO")
 public class Usuario implements UserDetails{
