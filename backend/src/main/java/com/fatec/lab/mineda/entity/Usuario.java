@@ -18,6 +18,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fatec.lab.mineda.view.ViewMesa;
+import com.fatec.lab.mineda.view.ViewPedido;
+import com.fatec.lab.mineda.view.ViewSecurity;
 
 @Entity
 public class Usuario implements UserDetails {
@@ -27,12 +31,15 @@ public class Usuario implements UserDetails {
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="USR_ID")
+	@JsonView({ViewSecurity.UsuarioCompleto.class})
 	private Long id;
     
     @Column(unique=true, length = 20, nullable = false)
+    @JsonView({ViewSecurity.UsuarioCompleto.class, ViewSecurity.UsuarioResumoAlternativo.class})
     private String nome;
     
     @Column(length = 50, nullable = false)
+    @JsonView({ViewSecurity.UsuarioCompleto.class})
     private String senha;
     
     @ManyToMany(fetch = FetchType.EAGER)

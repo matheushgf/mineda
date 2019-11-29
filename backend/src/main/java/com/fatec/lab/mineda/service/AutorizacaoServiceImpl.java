@@ -35,7 +35,7 @@ public class AutorizacaoServiceImpl implements AutorizacaoService {
 	}
 
 	@Override
-	@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("permitAll()")
 	public List<Autorizacao> todos() {
 		List<Autorizacao> retorno = new ArrayList<Autorizacao>();
 		for(Autorizacao autorizacao: autorizacaoRepo.findAll()) {

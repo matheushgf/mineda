@@ -1,5 +1,9 @@
 package com.fatec.lab.mineda.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +27,6 @@ import com.fatec.lab.mineda.security.JwtUtils;
 import com.fatec.lab.mineda.security.Login;
 
 @RestController
-@RequestMapping(value = "/login")
 public class LoginController {
 	
 		@Autowired
@@ -48,5 +51,26 @@ public class LoginController {
 	        response.setHeader("Token", JwtUtils.generateToken(usuario));
 	        return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	    }
+	    
+	    private String md5(String senha) {
+			try {
+				MessageDigest algorithm = MessageDigest.getInstance("MD5");
+				byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
+		
+				StringBuilder hexString = new StringBuilder();
+				hexString.append("{MD5}");
+				for (byte b : messageDigest) {
+				  hexString.append(String.format("%02x", 0xFF & b));
+				}
+				return hexString.toString();
+			} catch (NoSuchAlgorithmException exception) {
+				exception.printStackTrace();
+				// Unexpected - do nothing
+			} catch (UnsupportedEncodingException exception) {
+				exception.printStackTrace();
+				// Unexpected - do nothing			
+			} 
+			return senha;
+		}
 
 }

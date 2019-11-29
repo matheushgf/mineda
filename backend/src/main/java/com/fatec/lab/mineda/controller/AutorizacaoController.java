@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import com.fatec.lab.mineda.service.AutorizacaoService;
  *
  */
 @RestController
+@CrossOrigin
 public class AutorizacaoController {
 	
 	@Autowired
@@ -35,7 +37,6 @@ public class AutorizacaoController {
 	}
 	
 	@RequestMapping(value = "/autorizacao/getAll")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Collection<Autorizacao>> getAll() {
 		return new ResponseEntity<Collection<Autorizacao>>(autorizacaoService.todos(), HttpStatus.OK);
 	}

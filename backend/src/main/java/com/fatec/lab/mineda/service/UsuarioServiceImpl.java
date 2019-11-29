@@ -35,8 +35,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
+	@PreAuthorize("permitAll()")
 	public Usuario incluirUsuario(String nome, String senha, String nomeAutorizacao) {
 		Autorizacao autorizacao = autorizacaoRepo.findByNome(nomeAutorizacao);
 		// Se nao existe
@@ -61,7 +61,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 	
 	@Override
-	@PreAuthorize("isAuthenticated()")
 	public Usuario buscar(Long id) {
 		Optional<Usuario> usuario =  usuarioRepo.findById(id);
 		if(usuario.isPresent()) {
@@ -71,7 +70,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("permitAll()")
 	public List<Usuario> todos() {
 		List<Usuario> retorno = new ArrayList<Usuario>();
 		for(Usuario usuario: usuarioRepo.findAll()) {
@@ -81,18 +80,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 	
 	@Override
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
+	@PreAuthorize("permitAll()")
 	public Usuario salvar(Usuario usuario) {
-		if(!usuario.getAutorizacoes().isEmpty()) {
-			for(Autorizacao aut: usuario.getAutorizacoes()) {
-				// Se nao existe, cria
-				if(aut.getId() == null && autorizacaoRepo.findByNome(aut.getNome()) == null) {
-					autorizacaoRepo.save(aut);
-				}
-			}
-		}
-		usuario.setSenha(md5(usuario.getSenha()));
+//		if(!usuario.getAutorizacoes().isEmpty()) {
+//			for(Autorizacao aut: usuario.getAutorizacoes()) {
+//				// Se nao existe, cria
+//				if(aut.getId() == null && autorizacaoRepo.findByNome(aut.getNome()) == null) {
+//					autorizacaoRepo.save(aut);
+//				}
+//			}
+//		}
+		//usuario.setSenha(md5(usuario.getSenha()));
 		return usuarioRepo.save(usuario);
 	}
 
@@ -113,7 +112,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		} catch (UnsupportedEncodingException exception) {
 			exception.printStackTrace();
 			// Unexpected - do nothing			
-		}
+		} 
 		return senha;
 	}
 
