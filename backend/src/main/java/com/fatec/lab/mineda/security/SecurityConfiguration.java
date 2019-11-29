@@ -15,11 +15,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/").permitAll().and()
+        .authorizeRequests().antMatchers("/h2/**").permitAll();
+		
+		http.headers().frameOptions().disable();
 		http.csrf().disable()
 				.addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.exceptionHandling().authenticationEntryPoint(new RestAuthenticationEntryPoint())
@@ -28,15 +33,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
-	
+
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
-		}
+	}
 	
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
-		}
+	}
+
 }

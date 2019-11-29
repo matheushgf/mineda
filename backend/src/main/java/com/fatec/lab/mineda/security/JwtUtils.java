@@ -13,8 +13,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JwtUtils {    
-
+public class JwtUtils {
+    
     private static final String KEY = "spring.jwt.sec";
     
     public static String generateToken(Usuario usuario) throws JsonProcessingException {
@@ -24,7 +24,7 @@ public class JwtUtils {
         Date agora = new Date();
         Long hora = 1000L * 60L * 60L; // Uma hora
         return Jwts.builder().claim("userDetails", usuarioJson)
-            .setIssuer("br.gov.sp.fatec")
+            .setIssuer("com.fatec.lab.mineda")
             .setSubject(usuario.getNome())
             .setExpiration(new Date(agora.getTime() + hora))
             .signWith(SignatureAlgorithm.HS512, KEY)

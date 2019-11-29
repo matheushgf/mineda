@@ -3,13 +3,14 @@ package com.fatec.lab.mineda.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fatec.lab.mineda.entity.Autorizacao;
-import com.fatec.lab.mineda.repository.AutorizacaoRepository;;
+import com.fatec.lab.mineda.repository.AutorizacaoRepository;
 
 @Service("autorizacaoService")
 @Transactional
@@ -35,7 +36,7 @@ public class AutorizacaoServiceImpl implements AutorizacaoService {
 	}
 
 	@Override
-	@PreAuthorize("permitAll()")
+	@PreAuthorize("isAuthenticated()")
 	public List<Autorizacao> todos() {
 		List<Autorizacao> retorno = new ArrayList<Autorizacao>();
 		for(Autorizacao autorizacao: autorizacaoRepo.findAll()) {

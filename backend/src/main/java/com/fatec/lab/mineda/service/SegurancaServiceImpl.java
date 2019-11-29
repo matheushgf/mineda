@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.fatec.lab.mineda.entity.Usuario;
 import com.fatec.lab.mineda.repository.UsuarioRepository;
 
-
 @Service("segurancaService")
 public class SegurancaServiceImpl implements UserDetailsService {
 	
@@ -28,4 +27,5 @@ public class SegurancaServiceImpl implements UserDetailsService {
 		}
 		return usuario;
 	}
+
 }

@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fatec.lab.mineda.view.ViewPedido;
+import com.fatec.lab.mineda.view.viewProduto;
 
 @Entity
 public class Pedido {
@@ -27,10 +29,15 @@ public class Pedido {
 	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class})
 	private int quantidade;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="produto_id")
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoById.class})
+	private Produto produto;
+	
 	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class, ViewPedido.PedidoStatusMInValor.class})
 	private float valor;
 
-	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class, ViewPedido.PedidoStatusMInValor.class})
+	@JsonView({ViewPedido.PedidoGeral.class, ViewPedido.PedidoCadastro.class,ViewPedido.PedidoCadastro.class, ViewPedido.PedidoSemMesa.class, ViewPedido.PedidoById.class, ViewPedido.PedidoStatusMInValor.class})
 	private boolean fechado;
 	
 	@ManyToOne

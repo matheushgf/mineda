@@ -9,22 +9,32 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fatec.lab.mineda.view.ViewSecurity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
+@Table(name = "ANT_ANOTACAO")
 public class Anotacao implements Serializable {
 
 	private static final long serialVersionUID = -4175224450033765996L;
 
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "ANT_ID")
 	@JsonView(ViewSecurity.Anotacao.class)
 	private Long id;
     
-    @Column(length = 100, nullable = false)
+    @Column(name = "ANT_ASSUNTO", length = 100, nullable = false)
     @JsonView(ViewSecurity.Anotacao.class)
     private String assunto;
     
@@ -37,6 +47,7 @@ public class Anotacao implements Serializable {
     private Date dataHora;
     
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USR_CRIACAO_ID")
     @JsonView(ViewSecurity.Anotacao.class)
     private Usuario usuario;
     

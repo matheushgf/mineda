@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fatec.lab.mineda.entity.Usuario;
 import com.fatec.lab.mineda.service.UsuarioService;
 import com.fatec.lab.mineda.view.ViewSecurity;
-import com.fatec.lab.mineda.entity.Usuario;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @RequestMapping(value = "/usuario")
@@ -58,6 +58,7 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> save(@RequestBody Usuario usuario, UriComponentsBuilder uriComponentsBuilder) {
 		usuario = usuarioService.salvar(usuario);
 		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setLocation(uriComponentsBuilder.path("/getById?id=" + usuario.getId()).build().toUri());
 		return new ResponseEntity<Usuario>(usuario, responseHeaders, HttpStatus.CREATED);
 	}
 	
