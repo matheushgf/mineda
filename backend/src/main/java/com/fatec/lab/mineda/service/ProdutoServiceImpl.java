@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fatec.lab.mineda.entity.Mesa;
 import com.fatec.lab.mineda.entity.Pedido;
@@ -25,10 +27,14 @@ public class ProdutoServiceImpl implements ProdutoService {
 		this.produtoRepository = ProdutoRepository;
 	}
 	
+	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@Transactional
 	public Produto novoProduto(Produto produto) {
 		return produtoRepository.save(produto);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	Produto updateProduto(Produto produto) {
 		return produtoRepository.save(produto);
 	}
@@ -41,8 +47,8 @@ public class ProdutoServiceImpl implements ProdutoService {
 		return produtoRepository.findById(produtoId);
 	}
 	
-
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void deleteProduto(Long id) {
 		produtoRepository.deleteById(id);
 	}
