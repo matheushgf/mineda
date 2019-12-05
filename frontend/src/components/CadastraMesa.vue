@@ -7,7 +7,7 @@
           <h3>Dados da Mesa </h3>
           <p>
             Quantidade de lugares:
-            <input type="number" v-model="lugares">
+            <input type="number" v-model="quantidade_lugares">
           </p>
         </div>
         <div @if>
@@ -48,11 +48,16 @@ import axios from 'axios'
 
 export default {
   name: 'mesa',
+  data () {
+    return {
+      quantidade_lugares: ''      
+    }
+  },
   methods: {
     onSubmit () {
       axios.post('mesa/novaMesa',
         {
-          quantidade_lugares: this.lugares,
+          quantidade_lugares: this.quantidade_lugares,
           isOpen: true
         })
         .then(res => {

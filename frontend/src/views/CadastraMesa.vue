@@ -18,10 +18,10 @@ export default {
     onSubmit () {
       axios.post('mesa/novaMesa',
         {
-          quantidade_lugares: this.lugares
+          quantidade_lugares: this.quantidade_lugares
         })
         .then(res => {
-          console.log(res)
+          console.log(res);
         })
         .catch(error => console.log(error))
     }

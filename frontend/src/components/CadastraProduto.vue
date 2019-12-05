@@ -3,7 +3,9 @@
     <div id="nav">
       <router-link to="/produto">voltar</router-link>
       <div>
-      <form @submit.prevent="onSubmit">
+      <form 
+      @submit.prevent="onSubmit"
+      >
         <h3>Dados do Produto </h3>
         <p>
           Nome:
@@ -41,7 +43,8 @@
 </template>
 
 <script>
-import { AxiosInstance as axios } from 'axios'
+//import { AxiosInstance as axios } from 'axios'
+import axios from 'axios'
 
 export default {
   name: 'app',
@@ -61,24 +64,24 @@ export default {
         this.erro_nome = true
       }
       if (this.descricao.trim().length === 0) {
-        //alert('A descrição deve ser preenchida!')
+        alert('A descrição deve ser preenchida!')
       }
       if (this.preco.trim().length === 0) {
-        //alert('O preço deve ser preenchido!')
+        alert('O preço deve ser preenchido!')
       }
       if (this.tipo.trim().length === 0) {
-        //alert('O tipo deve ser preenchido!')
+        alert('O tipo deve ser preenchido!')
       }
-      if (this.validade.trim().length === 0) {
+     /* if (this.validade.trim().length === 0) {
         //alert('A validade deve ser preenchida!')
-      } else {
+      }*/ else {
         axios.post('produto/novoProduto',
           {
             nome: this.nome,
-            Descricao: this.descricao,
-            Preco: this.preco,
-            Tipo: this.tipo,
-            Validade: this.validade
+            descricao: this.descricao,
+            preco: this.preco,
+            tipo: this.tipo,
+            validade: this.validade
           })
           .then(res => {
             console.log(res)

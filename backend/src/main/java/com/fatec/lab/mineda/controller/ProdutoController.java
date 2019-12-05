@@ -38,6 +38,7 @@ public class ProdutoController {
 		 return new ResponseEntity<Collection<Produto>>(produtoService.getAllProdutos(), HttpStatus.OK);
 	 }
 	
+	@CrossOrigin(origins = "*")
 	@PostMapping(value = "/novoProduto", produces = MediaType.APPLICATION_JSON_VALUE)
 	@JsonView({viewProduto.ProdutoGeral.class})
 	public Produto novoProduto(@RequestBody Produto produto, HttpServletResponse response) {

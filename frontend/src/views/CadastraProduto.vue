@@ -22,10 +22,15 @@ export default {
   },
   methods: {
     onSubmit () {
-      axios.post('autorizacao/save',
+      axios.post('produto/novoProduto',
         {
           nome: this.nome,
-          usuario: this.usuario
+          descricao: this.descricao,
+          preco: this.preco,
+          tipo: this.tipo,
+          validade: this.validade
+
+          //usuario: this.usuario
         })
         .then(res => {
           console.log(res)
