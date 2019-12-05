@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/produto">voltar</router-link>
       <div>
-      <form 
+      <form
       @submit.prevent="onSubmit"
       >
         <h3>Dados do Produto </h3>
@@ -85,6 +85,7 @@ export default {
           })
           .then(res => {
             console.log(res)
+            this.$router.push('lista');
           })
           .catch(error => console.log(error))
       }

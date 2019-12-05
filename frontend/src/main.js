@@ -18,9 +18,10 @@ axios.interceptors.response.use(res => {
   return res
 }, error => {
   if(error.response.status === 403) {
-    alert('Não autorizado!')
+    alert('Não autorizado, sem permissão!')
   }
   else if (error.response.status === 401) {
+    alert('Não autorizado! Necessário logar.')
     store.commit('logout')
     router.push('/login')
   }

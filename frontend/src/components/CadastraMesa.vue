@@ -50,7 +50,7 @@ export default {
   name: 'mesa',
   data () {
     return {
-      quantidade_lugares: ''      
+      quantidade_lugares: ''
     }
   },
   methods: {
@@ -62,6 +62,7 @@ export default {
         })
         .then(res => {
           console.log(res)
+          this.$router.push('lista');
         })
         .catch(error => console.log(error))
     }
