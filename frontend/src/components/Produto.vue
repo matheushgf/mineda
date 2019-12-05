@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link to="/produto/cadastro">Cadastrar</router-link> |
       <router-link to="/produto/remocao">Remover</router-link> |
-      <router-link to="/produto/atualizacao">Atualizar</router-link>
+      <router-link to="/produto/atualizacao">Atualizar</router-link> |
+      <router-link to="/produto/lista">Listar Produtos</router-link>
     </div>
     <router-view/>
   </div>
